@@ -13,11 +13,15 @@ menu = [
         InlineKeyboardButton(
             text="🖼 Генерировать изображение", callback_data="generate_image"
         ),
+<<<<<<< HEAD
         InlineKeyboardButton(
             text="Edit image", callback_data="edit_image"
         )
     ],
     [InlineKeyboardButton(text="🔎 Помощь", callback_data="help")],
+=======
+    ]
+>>>>>>> 9ab576072f2fcf8e754521476b2e041d74817d0d
 ]
 menu = InlineKeyboardMarkup(inline_keyboard=menu)
 exit_kb = ReplyKeyboardMarkup(
