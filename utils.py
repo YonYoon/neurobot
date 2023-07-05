@@ -38,10 +38,12 @@ async def edit_image(orig, mask, prompt, n=1, size="512x512") -> list[str]:
     try:
         response = openai.Image.create_edit(
             image=open(
-                f"/Users/zhansen/vscode/incubator/neurobot/images/{orig}.png", "rb"
+                f"/Users/zhansen/vscode/incubator/neurobot/images/{orig}.png",
+                "rb"
             ),
             mask=open(
-                f"/Users/zhansen/vscode/incubator/neurobot/images/{mask}.png", "rb"
+                f"/Users/zhansen/vscode/incubator/neurobot/images/{mask}.png",
+                "rb"
             ),
             prompt=prompt,
             n=n,

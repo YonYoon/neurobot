@@ -79,7 +79,10 @@ async def get_orig(message: types.Message, state: FSMContext, bot: Bot):
     file = await bot.get_file(file_id)
     file_path = file.file_path
     file_ids.append(file_id)
-    await bot.download_file(file_path, f"/Users/zhansen/vscode/incubator/neurobot/images/{file_id}.png")
+    await bot.download_file(
+        file_path,
+        f"/Users/zhansen/vscode/incubator/neurobot/images/{file_id}.png"
+    )
     await message.answer("Now send an image with a mask")
     await state.set_state(Edit.mask_img)
 
@@ -90,7 +93,10 @@ async def get_mask(message: types.Message, state: FSMContext, bot: Bot):
     file = await bot.get_file(file_id)
     file_path = file.file_path
     file_ids.append(file_id)
-    await bot.download_file(file_path, f"/Users/zhansen/vscode/incubator/neurobot/images/{file_id}.png")
+    await bot.download_file(
+        file_path,
+        f"/Users/zhansen/vscode/incubator/neurobot/images/{file_id}.png"
+    )
     await message.answer("Now write a text prompt")
     await state.set_state(Edit.edit_prompt)
 
