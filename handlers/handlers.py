@@ -75,20 +75,22 @@ file_ids = []
 
 @router.message(Edit.orig_img)
 async def get_orig(message: types.Message, state: FSMContext, bot: Bot):
-    file_id = message.photo[-1].file_id
-    destination = f"/Users/zhansen/Pictures/{file_id}.png"
+    file_id = message.document.file_id
+    file = await bot.get_file(file_id)
+    file_path = file.file_path
     file_ids.append(file_id)
-    await bot.download(message.photo[-1], destination)
+    await bot.download_file(file_path, f"/Users/zhansen/vscode/incubator/neurobot/images/{file_id}.png")
     await message.answer("Now send an image with a mask")
     await state.set_state(Edit.mask_img)
 
 
 @router.message(Edit.mask_img)
 async def get_mask(message: types.Message, state: FSMContext, bot: Bot):
-    file_id = message.photo[-1].file_id
-    destination = f"/Users/zhansen/Pictures/{file_id}.png"
+    file_id = message.document.file_id
+    file = await bot.get_file(file_id)
+    file_path = file.file_path
     file_ids.append(file_id)
-    await bot.download(message.photo[-1], destination)
+    await bot.download_file(file_path, f"/Users/zhansen/vscode/incubator/neurobot/images/{file_id}.png")
     await message.answer("Now write a text prompt")
     await state.set_state(Edit.edit_prompt)
 
@@ -97,7 +99,9 @@ async def get_mask(message: types.Message, state: FSMContext, bot: Bot):
 async def send_edited_img(msg: Message, state: FSMContext):
     prompt = msg.text
     mesg = await msg.answer(text.gen_wait)
+    print()
     img_res = await utils.edit_image(file_ids[0], file_ids[1], prompt)
+    file_ids.clear()
     if len(img_res) == 0:
         return await mesg.edit_text(text.gen_error, reply_markup=kb.iexit_kb)
     await mesg.delete()

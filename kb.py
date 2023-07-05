@@ -8,13 +8,13 @@ from aiogram.types import (
 menu = [
     [
         InlineKeyboardButton(
-            text="📝 Генерировать текст", callback_data="generate_text"
+            text="Генерировать текст", callback_data="generate_text"
         ),
         InlineKeyboardButton(
-            text="🖼 Генерировать изображение", callback_data="generate_image"
+            text="Генерировать фото", callback_data="generate_image"
         ),
         InlineKeyboardButton(
-            text="Edit image", callback_data="edit_image"
+            text="Редактирование фото", callback_data="edit_image"
         )
     ],
     [InlineKeyboardButton(text="🔎 Помощь", callback_data="help")],
